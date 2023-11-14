@@ -26,8 +26,93 @@
     function playRound(playerSelection, computerSelection) {
       // Takes two string inputs - playerSelection may have a mix of capitalisation
       // uncapitalise playerSelection to stay consistent
+      const playerSelectionLowerCase = playerSelection.toLowerCase();
+      console.log(`playerSelection: ${playerSelectionLowerCase}`);
+      console.log(`computerSelection: ${computerSelection}`);
+      // Rock beats scissors, scissors beats paper, paper beats rock, if same - draw
+      // Player is rock possibilities:
+      // IF player is rock and computer is scissors
+      // player wins
+      // IF player is rock and computer is paper
+      // computer wins
+      // IF player is rock and computer is rock
+      // draw
+
+      // Repeat above for rock and paper
+      if (playerSelectionLowerCase === 'rock') {
+        switch (computerSelection) {
+          case "Rock":
+            return "Draw";
+          case "Paper":
+            return "You Lose! Paper beats Rock";
+          case "Scissors":
+            return "You Win! Rock beats Scissors";
+        }
+      } else if (playerSelectionLowerCase === 'paper') {
+        switch (computerSelection) {
+          case "Rock":
+            return "You Win! Paper Beats Rock";
+          case "Paper":
+            return "Draw";
+          case "Scissors":
+            return "You Lose! Scissors beats Paper";
+        }
+      } else if (playerSelectionLowerCase === 'scissors'){
+        switch (computerSelection) {
+          case "Rock":
+            return "You Lose! Rock beats Scissors";
+          case "Paper":
+            return "You Win! Scissors beats Paper";
+          case "Scissors":
+            return "Draw";
+        }
+      } else {
+        return "Invalid input";
+      }
     }
-    console.log(getComputerChoice());
+
+    function game() {
+      // loop through playRound 5 times each time taking an input from the user
+      // have to keep track of number of wins for user and computer
+
+      let playerWins = 0;
+      let computerWins = 0;
+      let playerSelection;
+      let result;
+      let playerWon;
+
+      for (let i = 0; i<5; i++) {
+        console.log(`Round ${i+1} --------------`);
+        playerSelection = window.prompt("Rock, paper or scissors?");
+        playerSelection = playerSelection.toLowerCase();
+        result = playRound(playerSelection, getComputerChoice());
+        console.log(result);
+        if (result !== 'Drawrock') {
+          playerWon = result.includes("Win");
+          switch (playerWon) {
+            case true:
+              playerWins++;
+              break;
+            case false:
+              computerWins++;
+              break;
+          }
+        }
+        // console.log(`playerWins: ${playerWins}`);
+        // console.log(`computerWins: ${computerWins}`);
+      }
+      console.log('-------------------------')
+      console.log(`You won ${playerWins} times. The computer won ${computerWins} times`);
+      if (playerWins > computerWins) {
+        console.log(`You are the winner!`);
+      } else if (computerWins > playerWins) {
+        console.log('The computer is the winner!');
+      } else {
+        console.log('You drew with the computer!');
+      }
+    }
+    // console.log(playRound("roCk",getComputerChoice()));
+    game();
 
   </script>
 </body>
