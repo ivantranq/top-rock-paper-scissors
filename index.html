@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // This script will take a users input and play a game of rock paper scissors
+    // For now this will have no GUI and will be played through the browser's console
+
+    // GET computer's choice first
+    function getComputerChoice() {
+      const randomNum = Math.floor(Math.random() * (4 - 1))+1;
+      if (randomNum === 1) {
+        return "Rock"
+      } else if (randomNum === 2) {
+        return "Paper"
+      } else {
+        return "Scissors"
+      }
+    }
+    // GET user's choice
+    // CALL rock paper scissors game output
+    function playRound(playerSelection, computerSelection) {
+      // Takes two string inputs - playerSelection may have a mix of capitalisation
+      // uncapitalise playerSelection to stay consistent
+    }
+    console.log(getComputerChoice());
+
+  </script>
+</body>
+</html>
