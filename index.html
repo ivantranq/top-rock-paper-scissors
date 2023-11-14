@@ -21,24 +21,17 @@
         return "Scissors"
       }
     }
-    // GET user's choice
-    // CALL rock paper scissors game output
+    
     function playRound(playerSelection, computerSelection) {
       // Takes two string inputs - playerSelection may have a mix of capitalisation
+
       // uncapitalise playerSelection to stay consistent
       const playerSelectionLowerCase = playerSelection.toLowerCase();
       console.log(`playerSelection: ${playerSelectionLowerCase}`);
       console.log(`computerSelection: ${computerSelection}`);
-      // Rock beats scissors, scissors beats paper, paper beats rock, if same - draw
-      // Player is rock possibilities:
-      // IF player is rock and computer is scissors
-      // player wins
-      // IF player is rock and computer is paper
-      // computer wins
-      // IF player is rock and computer is rock
-      // draw
-
-      // Repeat above for rock and paper
+      
+      // Figure out which of the 3 the player selected and compare
+      // to possible choices from computer
       if (playerSelectionLowerCase === 'rock') {
         switch (computerSelection) {
           case "Rock":
@@ -73,21 +66,26 @@
 
     function game() {
       // loop through playRound 5 times each time taking an input from the user
+      
       // have to keep track of number of wins for user and computer
-
       let playerWins = 0;
       let computerWins = 0;
+
+      // initialise variables before using in for loop.
       let playerSelection;
       let result;
       let playerWon;
 
       for (let i = 0; i<5; i++) {
+        // first get users input
         console.log(`Round ${i+1} --------------`);
         playerSelection = window.prompt("Rock, paper or scissors?");
         playerSelection = playerSelection.toLowerCase();
         result = playRound(playerSelection, getComputerChoice());
         console.log(result);
-        if (result !== 'Drawrock') {
+
+        // Only increments win counters if it is not a draw
+        if (result !== 'Draw') {
           playerWon = result.includes("Win");
           switch (playerWon) {
             case true:
@@ -101,6 +99,7 @@
         // console.log(`playerWins: ${playerWins}`);
         // console.log(`computerWins: ${computerWins}`);
       }
+      // Prints out who the winner is
       console.log('-------------------------')
       console.log(`You won ${playerWins} times. The computer won ${computerWins} times`);
       if (playerWins > computerWins) {
