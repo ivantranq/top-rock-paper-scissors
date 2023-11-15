@@ -3,10 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>RPS Baby</title>
 </head>
 <body>
+  <h1>Let's Play ROCK PAPER SCISSORS</h1>
+  <section class="buttons">
+    <h2>Please Make a Selection - First to 5 Wins!</h2>
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+  </section>
+  <section class="results">
+    <h2 class="results-heading"></h2>
+    <p class="computer"></p>
+    <p class="score"></p>
+    <p class="final-statement"></p>
+    <h3 class="result"></h3>
+  </section>
+
+
+  <!-- Script starts here -->
   <script>
+    const buttons = document.querySelectorAll('button');
+    const resultsHeading = document.querySelector('.results-heading');
+    const score = document.querySelector('.score');
+    const finalStatement = document.querySelector('.final-statement');
+    const computer = document.querySelector('.computer');
+    const resultFinal = document.querySelector('.result');
+
+    let gameNumber = 0;
+    let playerWins = 0;
+    let computerWins = 0;
+
+    console.log(buttons);
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        
+        if (computerWins === 5 || playerWins === 5) {
+          return;
+        }
+
+        resultsHeading.textContent = 'Results '
+        console.log(button.id);
+        let computerSelection = getComputerChoice();
+        computer.textContent = `Computer's Choice: ${computerSelection}`
+        let roundResult = playRound(button.id, computerSelection);
+
+        if (roundResult !== 'Draw') {
+          let playerWon = roundResult.includes("Win");
+          switch (playerWon) {
+            case true:
+              playerWins++;
+              break;
+            case false:
+              computerWins++;
+              break;
+          }
+        }
+
+        console.log(playerWins);
+        score.textContent = `Game ${++gameNumber}: ${roundResult}`;
+        finalStatement.textContent = `Current Score - You: ${playerWins} | Computer: ${computerWins}`;
+
+        if (computerWins === 5 || playerWins === 5) {
+          if (computerWins === 5) {
+            resultFinal.textContent = 'Computer Wins '
+          } else {
+            resultFinal.textContent = 'You Win! Congratulations.';
+          }
+          return;
+        }
+        
+      })
+    })
     // This script will take a users input and play a game of rock paper scissors
     // For now this will have no GUI and will be played through the browser's console
 
@@ -21,7 +91,9 @@
         return "Scissors"
       }
     }
+
     
+
     function playRound(playerSelection, computerSelection) {
       // Takes two string inputs - playerSelection may have a mix of capitalisation
 
@@ -85,17 +157,7 @@
         console.log(result);
 
         // Only increments win counters if it is not a draw
-        if (result !== 'Draw') {
-          playerWon = result.includes("Win");
-          switch (playerWon) {
-            case true:
-              playerWins++;
-              break;
-            case false:
-              computerWins++;
-              break;
-          }
-        }
+        
         // console.log(`playerWins: ${playerWins}`);
         // console.log(`computerWins: ${computerWins}`);
       }
@@ -111,7 +173,7 @@
       }
     }
     // console.log(playRound("roCk",getComputerChoice()));
-    game();
+    // game();
 
   </script>
 </body>
