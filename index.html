@@ -136,45 +136,6 @@
       }
     }
 
-    function game() {
-      // loop through playRound 5 times each time taking an input from the user
-      
-      // have to keep track of number of wins for user and computer
-      let playerWins = 0;
-      let computerWins = 0;
-
-      // initialise variables before using in for loop.
-      let playerSelection;
-      let result;
-      let playerWon;
-
-      for (let i = 0; i<5; i++) {
-        // first get users input
-        console.log(`Round ${i+1} --------------`);
-        playerSelection = window.prompt("Rock, paper or scissors?");
-        playerSelection = playerSelection.toLowerCase();
-        result = playRound(playerSelection, getComputerChoice());
-        console.log(result);
-
-        // Only increments win counters if it is not a draw
-        
-        // console.log(`playerWins: ${playerWins}`);
-        // console.log(`computerWins: ${computerWins}`);
-      }
-      // Prints out who the winner is
-      console.log('-------------------------')
-      console.log(`You won ${playerWins} times. The computer won ${computerWins} times`);
-      if (playerWins > computerWins) {
-        console.log(`You are the winner!`);
-      } else if (computerWins > playerWins) {
-        console.log('The computer is the winner!');
-      } else {
-        console.log('You drew with the computer!');
-      }
-    }
-    // console.log(playRound("roCk",getComputerChoice()));
-    // game();
-
   </script>
 </body>
 </html>
